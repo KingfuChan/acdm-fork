@@ -4330,8 +4330,8 @@ classdef ACDM_exported < matlab.apps.AppBase
             MP = get(0, 'MonitorPositions');
             MP1 = MP(1,:); %
 
-            w = 0.8*MP1(3);
-            h = 0.8*MP1(4);
+            w = 1380;
+            h = 720;
 
             app.ACDMUIFigure.Position = [MP1(1)+MP1(3)/2-w/2,MP1(2)+MP1(4)/2-h/2,w,h];
 
@@ -4339,7 +4339,7 @@ classdef ACDM_exported < matlab.apps.AppBase
                 webf = app.ACDMUIFigure;
                 ww = getWebWindowOfUiFigure(webf);
                 filepath = fileparts(mfilename('fullpath'));
-                ww.Icon = fullfile(filepath, '\images\acdm_icon.ico');
+                % ww.Icon = fullfile(filepath, '\images\acdm_icon.ico');
             end
 
             app.ACDMUIFigure.Visible = 'on';
@@ -4389,7 +4389,7 @@ classdef ACDM_exported < matlab.apps.AppBase
                 ww = matlab.internal.webwindowmanager.instance.findAllWebwindows();
                 webWindow = matlab.internal.webwindow.empty();
                 for ii = 1:numel(ww)
-                    if strcmp(ww(ii).Title, figNameTemp)
+                    if ~strcmp(ww(ii).Title, figNameTemp)
                         webWindow = ww(ii);
                         break;
                     end
@@ -5800,7 +5800,6 @@ classdef ACDM_exported < matlab.apps.AppBase
 
             % Create ACDMUIFigure and hide until all components are created
             app.ACDMUIFigure = uifigure('Visible', 'off');
-            app.ACDMUIFigure.NumberTitle = 'on';
             app.ACDMUIFigure.Position = [0 0 1380 720];
             app.ACDMUIFigure.Name = 'ACDM';
             app.ACDMUIFigure.CloseRequestFcn = createCallbackFcn(app, @UIFigureCloseRequest, true);
@@ -5922,7 +5921,7 @@ classdef ACDM_exported < matlab.apps.AppBase
             % Create TabGroup
             app.TabGroup = uitabgroup(app.ACDMUIFigure);
             app.TabGroup.SelectionChangedFcn = createCallbackFcn(app, @TabGroupSelectionChanged, true);
-            app.TabGroup.Position = [1 1 1380 720];
+            app.TabGroup.Position = [1 1 1379 719];
 
             % Create DetectionTab
             app.DetectionTab = uitab(app.TabGroup);
